@@ -1,26 +1,23 @@
 :root {
-    /* NOUVELLE PALETTE */
-    --bg: #0b1120; /* Bleu marine très foncé */
-    --card: #141c2e; /* Couleur de carte plus solide */
-    --text: #e5e7eb; /* Texte clair */
-    --accent: #38bdf8; /* Bleu ciel pour les accents */
-    --secondary-accent: #f59e0b; /* Jaune/Ambre pour les alertes danger */
-    --border: #334155; /* Bordure subtile */
-
-    /* NOUVELLE TYPOGRAPHIE */
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --bg: #0b1120;
+    --card: #141c2e;
+    --text: #e5e7eb;
+    --accent: #38bdf8;
+    --secondary-accent: #f59e0b;
+    --border: #334155;
+    --shadow-light: rgba(56, 189, 248, 0.1);
+    --glow-focus: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
-/* THÈME CLAIR */
 body.light {
-    --bg: #f8fafc; /* Blanc très clair */
-    --card: #ffffff; /* Carte blanche pure */
-    --text: #0f172a; /* Texte très foncé */
-    --border: #e2e8f0; /* Bordure claire */
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --border: #e2e8f0;
+    --shadow-light: rgba(15, 23, 42, 0.05);
+    --glow-focus: 0 0 0 4px rgba(56, 189, 248, 0.2);
 }
 
-/* NOUVELLES POLICES */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap');
 
 * {
@@ -32,78 +29,90 @@ body.light {
 body {
     background: var(--bg);
     color: var(--text);
-    /* Transition douce pour le changement de thème */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* TYPOGRAPHIE GLOBALE */
 h1, h2, h3 {
     font-family: var(--font-heading);
     font-weight: 700;
 }
 
 h2 {
-    font-size: 1.5rem; /* Augmenter légèrement la taille des titres de carte */
+    font-size: 1.5rem;
+    transition: color 0.2s ease;
 }
 
-/* HERO SECTION */
+/* =========================================================================
+   HÉROS (HEADER) - AMÉLIORATION
+   ========================================================================= */
 .hero {
-    padding: 60px 20px; /* Plus d'espace vertical */
+    padding: 70px 20px 40px;
     text-align: center;
-    /* Mettre le gradient un peu plus haut */
-    background: radial-gradient(circle at top, #1e40af55, transparent); 
-    border-bottom: 1px solid var(--border); /* Ligne de séparation */
+    background: radial-gradient(circle at top, rgba(56, 189, 248, 0.1), transparent 70%); 
+    border-bottom: 1px solid var(--border);
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: var(--accent); /* Mettre le titre en couleur accent */
+    font-size: 2.8rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
 
 .hero p {
     font-size: 1.1rem;
-    color: #94a3b8; /* Texte secondaire plus subtil */
+    color: #94a3b8;
 }
 
-.hero-actions {
-    margin-top: 30px;
+.header-actions {
+    margin-top: 40px;
     display: flex;
     justify-content: center;
-    gap: 15px; /* Plus d'espace entre les éléments */
+    gap: 15px;
 }
 
-/* INPUT DE RECHERCHE */
+/* =========================================================================
+   INPUT DE RECHERCHE - AMÉLIORATION
+   ========================================================================= */
 #search {
     padding: 12px 20px;
-    border-radius: 25px; /* Forme de pilule pour un look moderne */
-    border: 2px solid var(--border);
-    width: 300px;
-    background: var(--card); /* Utiliser la couleur de carte pour l'input */
+    border-radius: 28px;
+    border: 1px solid var(--border);
+    width: 350px;
+    background: var(--card); 
     color: var(--text);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
 }
 
 #search:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2); /* Anneau de focus élégant */
+    box-shadow: 0 0 0 4px var(--shadow-light), var(--glow-focus); 
 }
 
-/* BOUTON DE THÈME */
+#search::placeholder {
+    color: #64748b;
+    opacity: 0.8;
+}
+
+/* =========================================================================
+   BOUTON DE THÈME - AMÉLIORATION
+   ========================================================================= */
 #themeToggle {
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     background: var(--card);
     color: var(--text);
-    border-radius: 50%; /* Rond */
-    padding: 12px;
-    width: 45px;
-    height: 45px;
+    border-radius: 50%;
+    padding: 10px;
+    width: 48px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
-    transition: background-color 0.2s, transform 0.1s;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, border-color 0.3s;
 }
 
 #themeToggle:hover {
@@ -111,55 +120,58 @@ h2 {
 }
 
 #themeToggle:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
-/* CONTENEUR PRINCIPAL */
 main {
-    max-width: 800px; /* Réduire un peu la largeur pour une meilleure lisibilité */
+    max-width: 800px;
     margin: auto;
-    padding: 40px 20px; /* Plus d'espace autour */
+    padding: 40px 20px;
 }
 
-/* CARTES (ACCORDÉONS) */
 .card {
     background: var(--card);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     margin-bottom: 25px;
-    padding: 25px; /* Plus de padding */
+    padding: 25px;
     border: 1px solid var(--border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre douce */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; 
 }
 
 .card:hover {
-    border-color: var(--accent); /* Bordure en accent au survol */
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15), 0 0 10px var(--shadow-light);
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer; /* Indiquer que le header entier est cliquable (via le bouton) */
+    cursor: pointer;
+}
+
+.card-header:hover h2 {
+    color: var(--accent);
 }
 
 .desc {
     margin-top: 5px;
-    color: #94a3b8; /* Description plus subtile */
+    color: #94a3b8;
     font-style: italic;
     font-size: 0.95rem;
 }
 
-/* BOUTON TOGGLE */
 .toggle {
     font-size: 28px;
     background: none;
     color: var(--accent);
     border: none;
     cursor: pointer;
-    line-height: 1; /* Aligner le texte + / - */
-    width: 40px; /* Taille fixe */
+    line-height: 1;
+    width: 40px;
     height: 40px;
     border-radius: 8px;
     display: flex;
@@ -172,21 +184,26 @@ main {
     background: rgba(56, 189, 248, 0.1);
 }
 
-/* CONTENU */
 .content {
-    display: none; /* Règle par défaut: caché */
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0; 
+    padding-top: 0; 
+    border-top: none; 
+    transition: max-height 0.4s ease-in-out, margin 0.4s ease-in-out, padding 0.4s ease-in-out, border-top 0.4s ease-in-out;
+}
+
+.card-header[aria-expanded="true"] + .desc + .content,
+.card.open-default .content {
+    max-height: 1000px;
     margin-top: 25px;
     padding-top: 15px;
-    border-top: 1px solid var(--border); /* Ligne de séparation élégante */
+    border-top: 1px solid var(--border);
 }
 
-/* NOUVELLE RÈGLE: OUVRIR PAR DÉFAUT */
-.card.open-default .content {
-    display: block;
-}
 
 .content p, .content ul, .content ol {
-    line-height: 1.7; /* Améliorer la lisibilité du texte */
+    line-height: 1.7;
     margin-bottom: 15px;
 }
 
@@ -196,22 +213,30 @@ main {
     color: var(--accent);
 }
 
-/* LISTES */
 .content ul, .content ol {
     padding-left: 20px;
 }
 
 .content ul li {
-    list-style-type: '👉 '; /* Puces personnalisées */
-    padding-left: 5px;
+    list-style-type: none; 
+    padding-left: 25px;
     margin-bottom: 8px;
+    position: relative;
+}
+
+.content ul li::before {
+    content: '👉';
+    color: var(--accent);
+    font-size: 1.1em;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .content ol li {
     margin-bottom: 10px;
 }
 
-/* ALERTE */
 .alert {
     padding: 15px;
     border-radius: 10px;
@@ -221,8 +246,8 @@ main {
 }
 
 .alert.danger {
-    background: #451a03; /* Fond plus foncé pour le danger */
-    border-left: 5px solid var(--secondary-accent); /* Bordure colorée */
+    background: #451a03; 
+    border-left: 5px solid var(--secondary-accent);
     color: var(--secondary-accent);
 }
 
@@ -237,11 +262,16 @@ main {
     font-weight: 700;
 }
 
-/* IMAGES */
+.alert.danger.final-warning {
+    margin-top: 25px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 .tuto-image {
     margin: 30px 0;
     text-align: center;
-    background: #1e293b40; /* Fond subtil autour de l'image */
+    background: #1e293b40;
     padding: 10px;
     border-radius: 12px;
 }
@@ -272,7 +302,6 @@ hr.tuto-separator {
     margin: 40px 0;
 }
 
-/* FOOTER */
 footer {
     text-align: center;
     padding: 30px 20px;
@@ -281,12 +310,11 @@ footer {
     font-size: 0.9rem;
 }
 
-/* LIGHTBOX */
 #lightbox {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.95); /* Fond plus opaque */
+    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -304,8 +332,7 @@ footer {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Style d'affichage lors de l'ouverture (géré par JS) */
-#lightbox.active { /* Changé pour utiliser la classe 'active' gérée par JS */
+#lightbox.active { 
     display: flex;
 }
 
@@ -314,26 +341,15 @@ footer {
     opacity: 1;
 }
 
-/* NOUVELLES RÈGLES POUR LE TUTO RÉCUPÉRATION */
-
-/* Règle pour l'alignement des images si elles doivent être côte à côte */
 .content .tuto-image.recup,
 .content .tuto-image.recup2 {
     display: inline-block;
-    max-width: 48%; /* Permet de les mettre côte à côte si l'écran est assez large */
+    max-width: 48%; 
     margin: 15px 1%;
     vertical-align: top;
 }
 
-/* Règle pour que l'alerte rouge finale ait un peu de marge */
-.alert.danger.final-warning {
-    margin-top: 25px;
-    font-size: 1rem;
-    line-height: 1.5;
-}
 
-
-/* MEDIA QUERIES pour mobile */
 @media (max-width: 600px) {
     .hero h1 {
         font-size: 2rem;
@@ -347,7 +363,7 @@ footer {
 
     #search {
         width: 100%;
-        max-width: 300px;
+        max-width: 350px;
     }
 
     #themeToggle {
@@ -358,11 +374,6 @@ footer {
         padding: 20px;
     }
 
-    .content ul li {
-        list-style-type: '• '; /* Puces par défaut sur mobile pour éviter l'encombrement */
-    }
-
-    /* Assurer que sur mobile, les images du tuto récup repassent en bloc */
     .content .tuto-image.recup,
     .content .tuto-image.recup2 {
         display: block;
