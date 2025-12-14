@@ -47,7 +47,7 @@ h2 {
 }
 
 /* =========================================================================
-   HÉROS (HEADER)
+   HÉROS (HEADER) - AMÉLIORATION
    ========================================================================= */
 .hero {
     padding: 70px 20px 40px;
@@ -75,7 +75,9 @@ h2 {
     gap: 15px;
 }
 
-/* INPUT DE RECHERCHE */
+/* =========================================================================
+   INPUT DE RECHERCHE - AMÉLIORATION
+   ========================================================================= */
 #search {
     padding: 12px 20px;
     border-radius: 28px;
@@ -99,7 +101,9 @@ h2 {
     opacity: 0.8;
 }
 
-/* BOUTON DE THÈME */
+/* =========================================================================
+   BOUTON DE THÈME - AMÉLIORATION
+   ========================================================================= */
 #themeToggle {
     border: 1px solid var(--border);
     background: var(--card);
@@ -194,23 +198,22 @@ main {
 .content {
     max-height: 0;
     overflow: hidden;
-    /* transition sur toutes les propriétés que nous modifions (hauteur, marge, bordure) */
+    /* Transition pour un effet de glissement */
     transition: max-height 0.4s ease-in-out, margin 0.4s ease-in-out, padding 0.4s ease-in-out, border-top 0.4s ease-in-out;
 }
 
-/* État OUVERT (géré par la classe .is-open ajoutée par JS) */
-.card.is-open .content,
+/* Règles pour l'état ouvert - Appliquées via JS (aria-expanded="true" sur le header) */
+.card-header[aria-expanded="true"] + .desc + .content,
 .card.open-default .content {
-    /* La propriété max-height est désormais définie par JS (content.scrollHeight + "px") */
     margin-top: 25px;
     padding-top: 15px;
     border-top: 1px solid var(--border);
+    /* max-height est géré par JS pour la fluidité, mais la transition des paddings est ici */
 }
 
-/* État initial du card ouvert par défaut (uniquement pour le chargement, après le JS prend le relais) */
+/* État initial du card ouvert par défaut (pour que le contenu soit visible au chargement avant le premier clic) */
 .card.open-default .content {
-    /* Laisser cette grande valeur pour que le contenu s'affiche au chargement avant l'exécution du JS */
-    max-height: 1000px;
+    max-height: 1000px; /* Grande valeur pour que le contenu soit visible au chargement */
 }
 
 
@@ -375,7 +378,7 @@ footer {
         font-size: 2rem;
     }
     
-    .header-actions {
+    .hero-actions {
         flex-direction: column;
         align-items: center;
         gap: 10px;
