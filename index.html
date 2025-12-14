@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>FiveM - Centre d'Aide</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Guides et tutoriels FiveM pour améliorer les performances, corriger les bugs de textures et optimiser votre expérience de jeu.">
+    <meta name="keywords" content="FiveM, bug textures, cache FiveM, optimisation, FPS">
+    <meta name="author" content="FiveM Help">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+    <h1>🛠️ Centre d'aide FiveM</h1>
+    <p>Guides & tutoriels pour améliorer votre expérience de jeu</p>
+
+    <!-- OPTIONS -->
+    <div class="header-actions">
+        <input
+            type="text"
+            id="search"
+            placeholder="🔍 Rechercher un tutoriel..."
+            aria-label="Rechercher un tutoriel"
+        >
+        <button id="themeToggle" aria-label="Changer le thème">🌙</button>
+    </div>
+</header>
+
+<main id="tutorials">
+
+    <!-- ================= TUTO 1 ================= -->
+    <section class="card" data-title="vider le cache fivem">
+        <div class="card-header">
+            <h2>🧹 Vider le cache FiveM</h2>
+            <button class="toggle" aria-label="Ouvrir le tutoriel">+</button>
+        </div>
+
+        <p class="desc">
+            Guide simple pour supprimer les fichiers temporaires et optimiser FiveM.
+        </p>
+
+        <div class="content">
+            <ol>
+                <li>Trouvez l’icône <strong>FiveM</strong> sur votre bureau.</li>
+                <li>Faites un <strong>clic droit</strong> puis cliquez sur <em>« Ouvrir l’emplacement du fichier »</em>.</li>
+                <li>Ouvrez le dossier <strong>FiveM Application Data</strong>.</li>
+                <li>Supprimez les dossiers :
+                    <ul>
+                        <li><strong>crashes</strong></li>
+                        <li><strong>logs</strong></li>
+                    </ul>
+                </li>
+                <li>Ouvrez le dossier <strong>data</strong>.</li>
+                <li>Supprimez tout <strong>sauf</strong> le dossier <strong>game-storage</strong>.</li>
+            </ol>
+
+            <div class="alert danger">
+                ⚠️ Attention : Ne supprimez jamais le dossier <strong>game-storage</strong>.
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TUTO 2 ================= -->
+    <section class="card" data-title="bug textures fivem">
+        <div class="card-header">
+            <h2>🎮 Bug de textures sur FiveM</h2>
+            <button class="toggle" aria-label="Ouvrir le tutoriel">+</button>
+        </div>
+
+        <p class="desc">
+            Résoudre les textures manquantes, pertes de FPS et passages sous la map.
+        </p>
+
+        <div class="content">
+
+            <!-- PARTIE 1 -->
+            <h3>1️⃣ Ajuster l’Extended Texture Budget</h3>
+
+            <p>
+                Le <strong>Extended Texture Budget</strong> est une option clé dans les paramètres graphiques de FiveM.
+                Une mauvaise configuration peut entraîner des problèmes d’affichage.
+            </p>
+
+            <p><strong>Comment vérifier et ajuster cette option :</strong></p>
+
+            <ul>
+                <li>Allez dans les paramètres graphiques de votre jeu.</li>
+                <li>Trouvez l’option <strong>« Extended Texture Budget »</strong>.</li>
+                <li>Assurez-vous que le curseur reste dans la <strong>zone verte</strong>.</li>
+                <li>
+                    Rouge ou orange = <span class="bad">PC surchargé</span>.
+                </li>
+                <li>Ajustez progressivement selon les performances.</li>
+            </ul>
+
+            <div class="tuto-image zoomable">
+                <img src="images/extended-texture-budget.png" alt="Extended Texture Budget FiveM">
+                <span>Exemple de réglage recommandé</span>
+            </div>
+
+            <hr class="tuto-separator">
+
+            <!-- PARTIE 2 -->
+            <h3>2️⃣ Optimisez vos paramètres graphiques</h3>
+
+            <p>
+                Certains paramètres graphiques peuvent être trop élevés et nuire aux performances.
+            </p>
+
+            <ul>
+                <li>Diminuez la <strong>distance d’affichage</strong></li>
+                <li>Évitez les <strong>détails très élevés</strong></li>
+                <li>Adaptez selon votre configuration</li>
+            </ul>
+
+            <div class="tuto-image zoomable">
+                <img src="images/parametres-graphiques-fivem.png" alt="Paramètres graphiques FiveM">
+                <span>Paramètres graphiques optimisés</span>
+            </div>
+
+            <hr class="tuto-separator">
+
+            <!-- PARTIE 3 -->
+            <h3>3️⃣ Préserver le jeu de base</h3>
+            <ul>
+                <li>Privilégiez le jeu de base</li>
+                <li>Les packs de textures peuvent :
+                    <ul>
+                        <li>Créer des bugs</li>
+                        <li>Réduire les performances</li>
+                        <li>Être incompatibles avec certains serveurs</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- PARTIE 4 -->
+            <h3>4️⃣ Ne pas vider le cache inutilement</h3>
+            <p>
+                Le re-téléchargement des ressources peut <strong>aggraver</strong>
+                les bugs de textures sur les petites configurations.
+            </p>
+
+            <div class="alert info">
+                💡 Conseil : privilégiez la stabilité plutôt que les réglages extrêmes
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2025 - FiveM Help | Créé pour la communauté</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+    <img id="lightbox-img" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

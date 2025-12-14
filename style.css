@@ -1,0 +1,137 @@
+:root {
+    --bg: #0b1120;
+    --card: rgba(15, 23, 42, 0.8);
+    --text: #e5e7eb;
+    --accent: #38bdf8;
+}
+
+body.light {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.hero {
+    padding: 50px 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, #1e40af, transparent);
+}
+
+.hero-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#search {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    width: 250px;
+}
+
+#themeToggle {
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.card {
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #1e293b;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    font-size: 24px;
+    background: none;
+    color: var(--accent);
+    border: none;
+    cursor: pointer;
+}
+
+.content {
+    display: none;
+    margin-top: 20px;
+}
+
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.alert.danger {
+    background: #7c2d12;
+}
+
+.alert.info {
+    background: #1e3a8a;
+}
+
+.tuto-image {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.tuto-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    cursor: zoom-in;
+}
+
+.tuto-image span {
+    display: block;
+    margin-top: 8px;
+    color: #94a3b8;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.6;
+}
+
+/* LIGHTBOX */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+}
