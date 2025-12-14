@@ -1,123 +1,284 @@
 :root {
-    --bg: #0b1120;
-    --card: rgba(15, 23, 42, 0.8);
-    --text: #e5e7eb;
-    --accent: #38bdf8;
+    /* NOUVELLE PALETTE */
+    --bg: #0b1120; /* Bleu marine très foncé */
+    --card: #141c2e; /* Couleur de carte plus solide */
+    --text: #e5e7eb; /* Texte clair */
+    --accent: #38bdf8; /* Bleu ciel pour les accents */
+    --secondary-accent: #f59e0b; /* Jaune/Ambre pour les alertes danger */
+    --border: #334155; /* Bordure subtile */
+
+    /* NOUVELLE TYPOGRAPHIE */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
 }
 
+/* THÈME CLAIR */
 body.light {
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #0f172a;
+    --bg: #f8fafc; /* Blanc très clair */
+    --card: #ffffff; /* Carte blanche pure */
+    --text: #0f172a; /* Texte très foncé */
+    --border: #e2e8f0; /* Bordure claire */
 }
+
+/* NOUVELLES POLICES */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap');
 
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: var(--font-body);
 }
 
 body {
     background: var(--bg);
     color: var(--text);
+    /* Transition douce pour le changement de thème */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* TYPOGRAPHIE GLOBALE */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.5rem; /* Augmenter légèrement la taille des titres de carte */
+}
+
+/* HERO SECTION */
 .hero {
-    padding: 50px 20px;
+    padding: 60px 20px; /* Plus d'espace vertical */
     text-align: center;
-    background: radial-gradient(circle at top, #1e40af, transparent);
+    /* Mettre le gradient un peu plus haut */
+    background: radial-gradient(circle at top, #1e40af55, transparent); 
+    border-bottom: 1px solid var(--border); /* Ligne de séparation */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--accent); /* Mettre le titre en couleur accent */
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #94a3b8; /* Texte secondaire plus subtil */
 }
 
 .hero-actions {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px; /* Plus d'espace entre les éléments */
 }
 
+/* INPUT DE RECHERCHE */
 #search {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    width: 250px;
+    padding: 12px 20px;
+    border-radius: 25px; /* Forme de pilule pour un look moderne */
+    border: 2px solid var(--border);
+    width: 300px;
+    background: var(--card); /* Utiliser la couleur de carte pour l'input */
+    color: var(--text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+#search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2); /* Anneau de focus élégant */
+}
+
+/* BOUTON DE THÈME */
 #themeToggle {
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    cursor: pointer;
+    border: 2px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 50%; /* Rond */
+    padding: 12px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
+#themeToggle:hover {
+    background: var(--border);
+}
+
+#themeToggle:active {
+    transform: scale(0.95);
+}
+
+/* CONTENEUR PRINCIPAL */
 main {
-    max-width: 900px;
+    max-width: 800px; /* Réduire un peu la largeur pour une meilleure lisibilité */
     margin: auto;
-    padding: 30px 20px;
+    padding: 40px 20px; /* Plus d'espace autour */
 }
 
+/* CARTES (ACCORDÉONS) */
 .card {
     background: var(--card);
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #1e293b;
+    margin-bottom: 25px;
+    padding: 25px; /* Plus de padding */
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--accent); /* Bordure en accent au survol */
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer; /* Indiquer que le header entier est cliquable (via le bouton) */
 }
 
+.desc {
+    margin-top: 5px;
+    color: #94a3b8; /* Description plus subtile */
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* BOUTON TOGGLE */
 .toggle {
-    font-size: 24px;
+    font-size: 28px;
     background: none;
     color: var(--accent);
     border: none;
     cursor: pointer;
-}
-
-.content {
-    display: none;
-    margin-top: 20px;
-}
-
-.alert {
-    padding: 12px;
+    line-height: 1; /* Aligner le texte + / - */
+    width: 40px; /* Taille fixe */
+    height: 40px;
     border-radius: 8px;
-    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.toggle:hover {
+    background: rgba(56, 189, 248, 0.1);
+}
+
+/* CONTENU */
+.content {
+    display: none; /* Règle par défaut: caché */
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border); /* Ligne de séparation élégante */
+}
+
+/* NOUVELLE RÈGLE: OUVRIR PAR DÉFAUT */
+.card.open-default .content {
+    display: block;
+}
+
+.content p, .content ul, .content ol {
+    line-height: 1.7; /* Améliorer la lisibilité du texte */
+    margin-bottom: 15px;
+}
+
+.content h3 {
+    margin: 25px 0 15px;
+    font-size: 1.25rem;
+    color: var(--accent);
+}
+
+/* LISTES */
+.content ul, .content ol {
+    padding-left: 20px;
+}
+
+.content ul li {
+    list-style-type: '👉 '; /* Puces personnalisées */
+    padding-left: 5px;
+    margin-bottom: 8px;
+}
+
+.content ol li {
+    margin-bottom: 10px;
+}
+
+/* ALERTE */
+.alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .alert.danger {
-    background: #7c2d12;
+    background: #451a03; /* Fond plus foncé pour le danger */
+    border-left: 5px solid var(--secondary-accent); /* Bordure colorée */
+    color: var(--secondary-accent);
 }
 
 .alert.info {
-    background: #1e3a8a;
+    background: #1e3a8a30;
+    border-left: 5px solid var(--accent);
+    color: var(--accent);
 }
 
+.alert span.bad {
+    color: var(--secondary-accent);
+    font-weight: 700;
+}
+
+/* IMAGES */
 .tuto-image {
-    margin: 20px 0;
+    margin: 30px 0;
     text-align: center;
+    background: #1e293b40; /* Fond subtil autour de l'image */
+    padding: 10px;
+    border-radius: 12px;
 }
 
 .tuto-image img {
     max-width: 100%;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: zoom-in;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.tuto-image img:hover {
+    transform: scale(1.01);
 }
 
 .tuto-image span {
     display: block;
-    margin-top: 8px;
+    margin-top: 10px;
     color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
 }
 
+hr.tuto-separator {
+    border: none;
+    border-top: 1px dashed var(--border);
+    margin: 40px 0;
+}
+
+/* FOOTER */
 footer {
     text-align: center;
-    padding: 20px;
-    opacity: 0.6;
+    padding: 30px 20px;
+    opacity: 0.7;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
 }
 
 /* LIGHTBOX */
@@ -125,13 +286,60 @@ footer {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.95); /* Fond plus opaque */
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    cursor: zoom-out;
+    transition: opacity 0.3s ease;
 }
 
-#lightbox img {
+#lightbox-img {
     max-width: 90%;
     max-height: 90%;
-    border-radius: 12px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Style d'affichage lors de l'ouverture (géré par JS) */
+#lightbox.active { /* Changé pour utiliser la classe 'active' gérée par JS */
+    display: flex;
+}
+
+#lightbox.active #lightbox-img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* MEDIA QUERIES pour mobile */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #search {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #themeToggle {
+        align-self: flex-end;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .content ul li {
+        list-style-type: '• '; /* Puces par défaut sur mobile pour éviter l'encombrement */
+    }
 }
