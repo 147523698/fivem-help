@@ -1,6 +1,7 @@
 /* ===============================
-   ACCORDÉONS (+ / -) - VERSION STABLE
-   ================================ */
+   ACCORDÉONS (+ / -)
+   Correction : Utilise la classe 'is-open' pour une gestion CSS/JS plus fiable
+================================ */
 
 document.querySelectorAll(".card-header").forEach(header => {
     header.addEventListener("click", () => {
@@ -9,59 +10,55 @@ document.querySelectorAll(".card-header").forEach(header => {
         const toggleButton = card.querySelector(".toggle");
 
         // Déterminer si cette carte spécifique est actuellement ouverte
-        const isCurrentlyOpen = card.classList.contains("is-open");
+        const isCurrentlyOpen = header.getAttribute("aria-expanded") === "true";
 
         // --- 1. Fermer tous les autres accordéons ---
-        document.querySelectorAll(".card.is-open").forEach(c => {
-            if (c !== card) {
-                const c_content = c.querySelector(".content");
-                const c_header = c.querySelector(".card-header");
-                const c_toggle = c.querySelector(".toggle");
+        document.querySelectorAll(".card").forEach(c => {
+            const c_header = c.querySelector(".card-header");
+            const c_content = c.querySelector(".content");
+            const c_toggle = c.querySelector(".toggle");
 
-                // Fermer en JS pour que la transition fonctionne
+            if (c !== card && c_header.getAttribute("aria-expanded") === "true") {
+                // Fermer l'accordéon en JS : max-height à 0
                 c_content.style.maxHeight = '0px'; 
                 c_header.setAttribute("aria-expanded", "false");
                 c_toggle.textContent = "+";
-                c.classList.remove('is-open');
-                c.classList.remove('open-default'); // Nettoyage de la classe de défaut
+                c.classList.remove('open-default');
             }
         });
         
+        // Retirer l'état d'ouverture par défaut du card cliqué avant de le gérer
+        card.classList.remove('open-default');
+
         // --- 2. Ouvrir/Fermer l'élément cliqué ---
         if (isCurrentlyOpen) {
             // Fermer
             content.style.maxHeight = '0px';
             toggleButton.textContent = "+";
             header.setAttribute("aria-expanded", "false");
-            card.classList.remove('is-open');
         } else {
             // Ouvrir avec la hauteur exacte (scrollHeight) pour l'animation fluide
             content.style.maxHeight = content.scrollHeight + "px"; 
             toggleButton.textContent = "−";
             header.setAttribute("aria-expanded", "true");
-            card.classList.add('is-open');
         }
-
-        card.classList.remove('open-default'); // Assurer le nettoyage après le clic
     });
 });
 
 
-// Initialisation pour les transitions et l'état par défaut
+// Initialisation pour le premier élément ouvert (si open-default est présent)
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Gérer l'état par défaut au chargement
     const defaultOpenCard = document.querySelector('.card.open-default');
     if (defaultOpenCard) {
-        const content = defaultOpenCard.querySelector('.content');
         const header = defaultOpenCard.querySelector('.card-header');
-        
-        // Force l'ouverture au chargement sans animation
+        const content = defaultOpenCard.querySelector('.content');
+
+        // Initialiser la hauteur pour que la transition fonctionne après le premier clic
         content.style.maxHeight = content.scrollHeight + "px";
         header.setAttribute('aria-expanded', 'true');
-        defaultOpenCard.classList.add('is-open');
     }
 
-    // 2. Initialiser l'icône du thème au chargement
+    // Initialiser l'icône du thème au chargement
     const themeToggle = document.getElementById("themeToggle");
     if (themeToggle) {
         const isLight = document.body.classList.contains("light");
