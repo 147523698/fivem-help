@@ -314,6 +314,25 @@ footer {
     opacity: 1;
 }
 
+/* NOUVELLES RÈGLES POUR LE TUTO RÉCUPÉRATION */
+
+/* Règle pour l'alignement des images si elles doivent être côte à côte */
+.content .tuto-image.recup,
+.content .tuto-image.recup2 {
+    display: inline-block;
+    max-width: 48%; /* Permet de les mettre côte à côte si l'écran est assez large */
+    margin: 15px 1%;
+    vertical-align: top;
+}
+
+/* Règle pour que l'alerte rouge finale ait un peu de marge */
+.alert.danger.final-warning {
+    margin-top: 25px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
 /* MEDIA QUERIES pour mobile */
 @media (max-width: 600px) {
     .hero h1 {
@@ -341,5 +360,13 @@ footer {
 
     .content ul li {
         list-style-type: '• '; /* Puces par défaut sur mobile pour éviter l'encombrement */
+    }
+
+    /* Assurer que sur mobile, les images du tuto récup repassent en bloc */
+    .content .tuto-image.recup,
+    .content .tuto-image.recup2 {
+        display: block;
+        max-width: 100%;
+        margin: 15px auto;
     }
 }
